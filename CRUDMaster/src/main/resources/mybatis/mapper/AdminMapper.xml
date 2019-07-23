@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.paing.mapper.AdminMapper">
+	<insert id="save"> <!-- id and method name must be same -->
+		INSERT INTO 
+			admin(admin_name,age,phone_number,address,created_date)
+		VALUES
+			(#{admin.adminName},#{admin.age},#{admin.phoneNumber},
+			#{admin.address},CURDATE())
+	</insert>
+
+	<update id="update">
+		update admin set
+			admin_name=#{admin.adminName},age=#{admin.age},
+			phone_number=#{admin.phoneNumber},address=#{admin.address}
+		where
+			admin_id=#{admin.adminId}
+	</update>
+
+	<delete id="delete">
+		delete from admin where admin_id=#{id}
+	</delete>
+
+	<select id="findAdmin" resultType="com.paing.model.Admin">
+		SELECT * FROM admin
+		<where>
+			<if test="admin.adminId!=null">
+				admin_id = #{admin.adminId}
+			</if>
+			<if test="admin.adminName!=null">
+				admin_name Like '%' #{admin.adminName} '%'
+			</if>
+			<if test="admin.phoneNumber!=null">
+				and phone_number like '%' #{admin.phoneNumber} '%'
+			</if>
+			<if test="admin.address!=null">
+				and address like '%' #{admin.address} '%'
+			</if>
+		</where>
+	</select>
+</mapper>

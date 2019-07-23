@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Customer List</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-grid.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-grid.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-reboot.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-reboot.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<script type="text/javascript" th:src="@{/js/bootstrap}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min}"></script>
+</head>
+<body>
+	<h1 align="center">Welcome</h1>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<div align="center" class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td align="center" class="font-weight-bold"><h3>
+							<a th:href="@{/customer}">Customer</a>
+						</h3></td>
+					<td align="center" class="font-weight-bold"><h3>
+							<a th:href="@{/employee}">Employee</a>
+						</h3></td>
+					<td align="center" class="font-weight-bold"><h3>
+							<a th:href="@{/admin}">Admin</a>
+						</h3></td>
+				</tr>
+			</thead>
+			<form data-th-action="@{/searchCustomer}" th:object="${customer}"
+		method="POST">
+			<tbody>
+		
+				<tr>
+					<td>Name<br /> <input type="text" th:field="*{customerName}"/></td>
+					<td>Phone Number<br /> <input type="text" th:field="*{phoneNumber}"/></td>
+				</tr>
+
+				<tr>
+					<td>address<br /> <input type="text" th:field="*{address}"/></td>
+					<td><input type="submit" value="Search" class="btn btn-primary"/>&nbsp;&nbsp;&nbsp;&nbsp;<a
+						th:href="@{/addCustomer}" class="btn btn-primary">Add Customer</a></td>
+				</tr>
+			</tbody>
+			</form>
+		</table>
+		
+		<div align="center" class="container">
+		<table class="table table-striped"> 
+		<thead>
+			<tr>
+				<td align="center" class="font-weight-bold"><h3>ID</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Name</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Age</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Gender</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Phone</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Address</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Created Date</h3></td>
+				<td align="center" class="font-weight-bold"><h3>Updated Date</h3></td>
+				<td colspan="2" align="center" class="font-weight-bold"><h3>Action</h3></td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="customer : ${customers}">
+				<td th:utext="${customer.customerId}">...</td>
+				<td th:utext="${customer.customerName}">...</td>
+				<td th:utext="${customer.age}">...</td>
+				<td th:utext="${customer.gender}">...</td>
+				<td th:utext="${customer.phoneNumber}">...</td>
+				<td th:utext="${customer.address}">...</td>
+				<td th:utext="${customer.createdDate}">...</td>
+				<td th:utext="${customer.updatedDate}">...</td>
+				<td><a th:href="@{/updateCustomer/{id}(id=${customer.customerId})}">Update</a></td>
+				<td><a th:href="@{/deleteCustomer/{id}(id=${customer.customerId})}">Delete</a></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+</body>
+</html>

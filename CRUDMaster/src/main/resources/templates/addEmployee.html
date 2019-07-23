@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Add Customer</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-grid.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-grid.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-reboot.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-reboot.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<script type="text/javascript" th:src="@{/js/bootstrap}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min}"></script>
+</head>
+<body>
+	<form th:action="@{/addEmployee}" th:object="${employee}" method="POST">
+
+		<table class="table table-striped">
+			<tr>
+				<td></td>
+				<td><h1 align="left">Create a Employee:</h1></td>
+
+			</tr>
+			<tr>
+				<td align="right">Employee Name:</td>
+				<td><input type="text" th:field="*{employeeName}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('employeeName')}"
+						th:errors="*{employeeName}" th:style="${'color:red'}"></div>
+				</td>
+				
+			</tr>
+			<tr>
+				<td align="right">Age:</td>
+				<td><input type="text" th:field="*{age}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('age')}"
+						th:errors="*{age}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Salary:</td>
+				<td><input type="text" th:field="*{salary}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('salary')}"
+						th:errors="*{salary}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Position:</td>
+				<td><input type="text" th:field="*{position}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('position')}"
+						th:errors="*{position}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Gender:</td>
+				<td><input type="text" th:field="*{gender}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('gender')}"
+						th:errors="*{gender}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Phone:</td>
+				<td><input type="text" th:field="*{phoneNumber}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('phoneNumber')}"
+						th:errors="*{phoneNumber}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">Address:</td>
+				<td><input type="text" th:field="*{address}">
+				<div class="col-sm-10" th:if="${#fields.hasErrors('address')}"
+						th:errors="*{address}" th:style="${'color:red'}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="left"><input type="submit" value="Create" /></td>
+			</tr>
+		</table>
+	</form>
+	<br />
+</body>
+</html>

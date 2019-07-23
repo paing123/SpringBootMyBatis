@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.paing.mapper.EmployeeMapper">
+	<insert id="save"> <!-- id and method name must be same -->
+		INSERT INTO
+		employee(employee_name,age,salary,position,gender,phone_number,address,created_date)
+		VALUES
+		(#{employee.employeeName},#{employee.age},#{employee.salary},#{employee.position},#{employee.gender},
+		#{employee.phoneNumber},#{employee.address},CURDATE())
+	</insert>
+
+	<update id="update">
+		update employee set
+		employee_name=#{employee.employeeName},age=#{employee.age},
+		salary=#{employee.salary},position=#{employee.position},
+		gender=#{employee.gender},phone_number=#{employee.phoneNumber},
+		address=#{employee.address},updated_date=CURDATE()
+		where
+		employee_id=#{employee.employeeId}
+	</update>
+
+	<delete id="delete">
+		delete from employee where employee_id=#{id}
+	</delete>
+
+	<select id="findEmployee" resultType="com.paing.model.Employee">
+		SELECT * FROM employee
+		<where>
+			<if test="employee.employeeId!=null">
+				employee_id = #{employee.employeeId}
+			</if>
+			<if test="employee.employeeName!=null">
+				employee_name Like '%' #{employee.employeeName} '%'
+			</if>
+			<if test="employee.phoneNumber!=null">
+				and phone_number like '%' #{employee.phoneNumber} '%'
+			</if>
+			<if test="employee.address!=null">
+				and address like '%' #{employee.address} '%'
+			</if>
+		</where>
+	</select>
+</mapper>

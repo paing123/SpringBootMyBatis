@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.paing.mapper.CustomerMapper">
+	<insert id="save"> <!-- id and method name must be same -->
+		INSERT INTO
+			customer(customer_name,age,gender,phone_number,address,created_date)
+		VALUES
+			(#{customer.customerName},#{customer.age},#{customer.gender},#{customer.phoneNumber},#{customer.address},
+				CURDATE())
+	</insert>
+	
+	<update id="update">
+		update customer set
+			customer_name=#{customer.customerName},age=#{customer.age},
+			gender=#{customer.gender},phone_number=#{customer.phoneNumber},
+			address=#{customer.address},updated_date=CURDATE()
+		where customer_id=#{customer.customerId}
+	</update>
+	
+	<delete id="delete">
+	delete from customer where customer_id=#{id}
+	</delete>
+	
+	<select id="findCustomer" resultType="com.paing.model.Customer">
+	SELECT * FROM customer
+	<where>
+	<if test="customer.customerId!=null">
+		customer_id = #{customer.customerId}
+	</if>
+	<if test="customer.customerName!=null">
+		customer_name Like '%' #{customer.customerName} '%'
+ 	</if>
+	<if test="customer.phoneNumber!=null">
+		and phone_number like '%' #{customer.phoneNumber} '%'
+	</if>
+	<if test="customer.address!=null">
+		and address like '%' #{customer.address} '%'
+	</if>
+	</where>
+	</select>
+</mapper>

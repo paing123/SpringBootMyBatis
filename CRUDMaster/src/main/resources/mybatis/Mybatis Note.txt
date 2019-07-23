@@ -1,0 +1,31 @@
+Mybatis Note
+------------
+replace with JDBC,
+seprate the SQL query(Dynamic SQL access)
+
+Configure Mybatis
+-----------------
+-resources|
+	  -mybatis|
+		  -CustomerMapper.xml
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+namespace="kmd.techfun.springhw.customermapper.CustomerMapper">
+
+<insert>---</insert>
+<update>---</update>
+
+</mapper>
+
+Build the Mapper Package
+-----------------------
+@Mapper
+public interface CustomerMapper {
+	public void save(@Param("customer") Customer customer);
+}
+
+
+
